@@ -1,0 +1,7 @@
+```
+scally = ZMQClient()
+
+start_date = datetime.datetime.today().replace(hour=0, minute=0).isoformat(timespec='milliseconds')
+
+print(scally.get_document("@not_none", creation_date_start=start_date))
+```
