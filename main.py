@@ -39,6 +39,7 @@ def get_actions_with_payments():
             SELECT 
                 a.track_id,
                 a.plan,
+                a.alert,
                 a.status AS action_status,
                 p.status AS payment_status,
                 u.user_id AS custom_user_id
@@ -55,13 +56,14 @@ def get_actions_with_payments():
         for row in rows:
             track_id = row['track_id']
             plan = row['plan']
+            alert = row['alert']
             action_status = row['action_status']
             payment_status = row['payment_status']
             custom_user_id = row['custom_user_id']
             
             current_status = get_user_status(track_id)
             
-            if plan == "alert" and payment_status == "success" and action_status == "active":
+            if (plan == "alert" or plan == "full_data") and alert and payment_status == "success" and action_status == "active":
                 document = scally_client.get_last_document(track_id).get("documents")
                 
                 if len(document) >= 1:
