@@ -4,7 +4,7 @@ pipeline {
     environment {
         GIT_CREDENTIALS = credentials('gitlab-iuda-sitera')
         DOCKERHUB_CREDENTIALS = credentials('docker-iuda')
-        IMAGE_NAME = "iuda194/user_activity_db_layer:prod"
+        IMAGE_NAME = "iuda194/user_activity_alert_service:prod"
     }
     stages {
         stage('Build Docker Image') {
