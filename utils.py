@@ -40,7 +40,9 @@ def get_user_status(username):
         except Exception as e:
             print(f"Ошибка: {e}")
         finally:
+            print("Finally")
             await client.disconnect()
+            print("client disconnected")
 
     # Запуск асинхронной функции
     return run_sync(fetch_user_status())
